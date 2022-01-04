@@ -6,5 +6,5 @@ from .views import (
 
 app_name = 'company'
 company_urlpatterns = ([
-    path('', home, name='home_url'),
+	path('', home, name='home_url'),
 ], app_name)
