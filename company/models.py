@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ClassBaseModel(models.Model):
     status = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -25,7 +26,7 @@ class Supplier(ClassBaseModel):
 
 
 class Customer(ClassBaseModel):
-	"""Empresa/Compañia."""
+	"""Clientes."""
 	CLIENT_TYPE_CHOICES = (
 		('01', 'NORMAL'),
 		('02', 'PLATA'),
