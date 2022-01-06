@@ -1,0 +1,45 @@
+version: "3.5"
+
+services:
+  db:
+    image: postgres
+    env_file: ".db.env"
+    container_name: mobilender_db
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  backend:
+    build:
+      context: .
+      dockerfile: docker/back/Dockerfile
+      args:
+        APP_USER: 'authuser'
+    container_name: mobilender_backend
+    env_file:
+      - ".db.env"
+      - ".back.env"
+    expose:
+      - 8000
+    volumes:
+      - .:/app
+      - files_volume:/opt/mobilender_files
+    depends_on:
+      - db
+  proxy:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        CONFIG_ROOT: "./docker/nginx/prod"
+    container_name: mobilender_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/prod/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  files_volume:

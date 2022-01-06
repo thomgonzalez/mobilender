@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  backend:
+    env_file:
+      - ".back.local.env"
+  proxy:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        CONFIG_ROOT: "./docker/nginx/local"
+    volumes:
+      - ./docker/nginx/local/conf.d:/etc/nginx/conf.d
