@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.back.env
+.back.local.env
+.db.env
+/staticfiles/

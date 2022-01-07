@@ -1,0 +1,91 @@
+[
+    {
+        "id": 1,
+        "order": {
+            "id": 1,
+            "customer": {
+                "id": 4,
+                "code": "04",
+                "name": "PATITO 4",
+                "client_type": "04"
+            },
+            "order_number": 123456789,
+            "is_urgent": true,
+            "generated_date": "2022-01-07T14:53:49.318038Z",
+            "amount": 3000,
+            "branch": null,
+            "distribution": {
+                "id": 1,
+                "stock": "Tepozotlan"
+            },
+            "company": null
+        },
+        "article": {
+            "id": 1,
+            "code": 123456,
+            "title": "ZAPATOS",
+            "supplier": 1
+        },
+        "assortment_date": null
+    },
+    {
+        "id": 2,
+        "order": {
+            "id": 2,
+            "customer": {
+                "id": 2,
+                "code": "02",
+                "name": "PATITO 2",
+                "client_type": "02"
+            },
+            "order_number": 764538267,
+            "is_urgent": false,
+            "generated_date": "2022-01-07T14:54:35.201428Z",
+            "amount": 500,
+            "branch": null,
+            "distribution": null,
+            "company": {
+                "id": 1,
+                "code": 1,
+                "reference": "Central Santa Fe"
+            }
+        },
+        "article": {
+            "id": 2,
+            "code": 2,
+            "title": "DULCES",
+            "supplier": 2
+        },
+        "assortment_date": "2022-01-01T16:19:02Z"
+    },
+    {
+        "id": 3,
+        "order": {
+            "id": 3,
+            "customer": {
+                "id": 3,
+                "code": "03",
+                "name": "PATITO 3",
+                "client_type": "03"
+            },
+            "order_number": 456789234,
+            "is_urgent": false,
+            "generated_date": "2022-01-07T14:55:14.422529Z",
+            "amount": 1000,
+            "branch": {
+                "id": 1,
+                "code": 1,
+                "reference": "Queretaro"
+            },
+            "distribution": null,
+            "company": null
+        },
+        "article": {
+            "id": 3,
+            "code": 1,
+            "title": "INSUMOS",
+            "supplier": 2
+        },
+        "assortment_date": "2022-01-06T18:00:00Z"
+    }
+]
