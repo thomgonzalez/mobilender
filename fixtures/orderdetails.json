@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "order": {
+            "id": 1,
+            "customer": {
+                "id": 4,
+                "code": "04",
+                "name": "PATITO 4",
+                "client_type": "04"
+            },
+            "order_number": 123456789,
+            "is_urgent": true,
+            "generated_date": "2022-01-07T14:53:49.318038Z",
+            "amount": 3000,
+            "branch": null,
+            "distribution": {
+                "id": 1,
+                "stock": "Tepozotlan"
+            },
+            "company": null
+        },
+        "article": {
+            "id": 1,
+            "code": 123456,
+            "title": "ZAPATOS",
+            "supplier": 1
+        },
+        "assortment_date": null
+    }
+]
