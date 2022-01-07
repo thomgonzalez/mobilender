@@ -94,14 +94,16 @@ class OrderDetail(models.Model):
 	"""
 	Detalle del pedido
 	"""
-	order = models.OneToOneField(Order, on_delete=models.CASCADE)
+	order = models.ForeignKey(Order, on_delete=models.CASCADE)
 	article = models.ForeignKey(Article, on_delete=models.CASCADE)
+	assortment_date = models.DateTimeField(
+		null=True, blank=True,
+		help_text='Fecha y hora en que se surtió el pedido.')
 	
 	def __str__(self):
 		return '{} {}'.format(self.order.order_number, self.article.title)
 
 	class Meta:
-		unique_together = (('order', 'article'))
 		verbose_name_plural = "Order Details"
 
 
@@ -110,8 +112,8 @@ class Delivery(models.Model):
 	Entrega
 	"""
 	order_detail = models.ForeignKey(OrderDetail, on_delete=models.CASCADE)
-	assorted_date = models.DateTimeField(help_text='Fecha y hora en que se surtió el pedido.')
-
+	delivery_date = models.DateTimeField(null=True, help_text='Fecha de entrega.')
+	
 	def __str__(self):
 		return '{}'.format(self.assorted_date)
 
