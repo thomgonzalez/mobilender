@@ -1,22 +1,9 @@
-# Django-filter provides a custom FilterSet and filter backend for use with Django REST Framework.
-from django_filters import rest_framework as drf_filters
+from django_filters import rest_framework as filters
+from shop.models import Order
 
-# django-rest-framework-filters
-import rest_framework_filters as filters
+class OrderFilter(filters.FilterSet):
+	is_urgent = filters.BooleanFilter(field_name="is_urgent", lookup_expr='iexact')
 
-from ...rh.models import Employee, Person
-
-
-class PersonFilter(filters.FilterSet):
 	class Meta:
-		model = Person
-		fields = {'rfc': ['exact', 'in', 'startswith']}
-
-
-class EmployeeFilter(filters.FilterSet):
-	person = filters.RelatedFilter(filterset=PersonFilter, field_name='person',
-								   queryset=Person.objects.all())
-	class Meta:
-		model = Employee
-		fields = ('empl_number', 'person')
-
+		model = Order
+		fields = ('is_urgent',)
