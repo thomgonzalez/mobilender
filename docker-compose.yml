@@ -24,6 +24,7 @@ services:
     volumes:
       - .:/app
       - files_volume:/opt/mobilender_files
+      - static_volume:/code/staticfiles
     depends_on:
       - db
   proxy:
@@ -37,9 +38,11 @@ services:
       - "80:80"
     volumes:
       - ./docker/nginx/prod/conf.d:/etc/nginx/conf.d
+      - static_volume:/code/staticfiles
     depends_on:
       - backend
 
 volumes:
   postgres_data:
   files_volume:
+  static_volume:

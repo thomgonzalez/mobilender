@@ -37,3 +37,7 @@ backend_migrate:
 .PHONY: backend_superuser
 backend_superuser:
 	@docker exec -it mobilender_backend python manage.py createsuperuser
+
+.PHONY: backend_static
+backend_static:
+	@docker exec -it mobilender_backend python manage.py collectstatic
