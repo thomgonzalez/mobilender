@@ -41,3 +41,7 @@ backend_superuser:
 .PHONY: backend_static
 backend_static:
 	@docker exec -it mobilender_backend python manage.py collectstatic
+
+.PHONY: db_sh
+db_sh:
+	@docker exec -it mobilender_db bash
