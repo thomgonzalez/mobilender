@@ -54,7 +54,18 @@ class OrderViewSet(viewsets.GenericViewSet):
 
 	def create(self, request):
 		data = request.data
+		branch = data.get('branch', None)
+		distribution = data.get('distribution', None)
+		company = data.get('company', None)
+
+		data.update({
+			'branch': branch, 
+			'distribution': distribution, 
+			'company':company
+		})
+
 		serializer = OrderFormSerializer(data=data)
 		serializer.is_valid(raise_exception=True)
 		serializer.save()
-		return Response(serializer.data, status=status.HTTP_201_CREATED)
+		response = { 'detail': 'Success'}
+		return Response(response, status=status.HTTP_201_CREATED)
