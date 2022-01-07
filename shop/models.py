@@ -30,6 +30,9 @@ class Distribution(models.Model):
 	"""
 	stock = models.CharField(max_length=100, help_text='Almacen.')
 
+	def __str__(self):
+		return '{}'.format(self.stock)
+
 	class Meta:
 		verbose_name_plural = "Distributions"
 
@@ -41,6 +44,9 @@ class Branch(models.Model):
 	code = models.IntegerField()
 	reference = models.CharField(max_length=50, help_text='Almacen.')
 
+	def __str__(self):
+		return '{} {}'.format(self.code, self.reference)
+	
 	class Meta:
 		unique_together = ('code',)
 		verbose_name_plural = "BranchOffices"
@@ -53,6 +59,9 @@ class Company(models.Model):
 	code = models.IntegerField(help_text='Código de Socio')
 	reference = models.CharField(max_length=50, help_text='Almacen.')
 	
+	def __str__(self):
+		return '{} {}'.format(self.code, self.reference)
+
 	class Meta:
 		unique_together = ('code',)
 		verbose_name_plural = "Companies"
@@ -73,6 +82,13 @@ class Order(models.Model):
 		help_text='Fecha y hora en que se generó el pedido.')
 	amount = models.IntegerField(help_text='Cantidad solicitada.')
 
+	def __str__(self):
+		return '{}'.format(self.order_number)
+
+	class Meta:
+		unique_together = ('order_number',)
+		verbose_name_plural = "Orders"
+
 
 class OrderDetail(models.Model):
 	"""
@@ -81,6 +97,13 @@ class OrderDetail(models.Model):
 	order = models.OneToOneField(Order, on_delete=models.CASCADE)
 	article = models.ForeignKey(Article, on_delete=models.CASCADE)
 	
+	def __str__(self):
+		return '{} {}'.format(self.order.order_number, self.article.title)
+
+	class Meta:
+		unique_together = (('order', 'article'))
+		verbose_name_plural = "Order Details"
+
 
 class Delivery(models.Model):
 	"""
@@ -88,3 +111,9 @@ class Delivery(models.Model):
 	"""
 	order_detail = models.ForeignKey(OrderDetail, on_delete=models.CASCADE)
 	assorted_date = models.DateTimeField(help_text='Fecha y hora en que se surtió el pedido.')
+
+	def __str__(self):
+		return '{}'.format(self.assorted_date)
+
+	class Meta:
+		verbose_name_plural = "Deliveries"
