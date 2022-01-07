@@ -63,9 +63,9 @@ class Order(models.Model):
 	Pedido
 	"""
 	customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-	branch = models.ForeignKey(Branch, null=True, on_delete=models.CASCADE)
-	distribution = models.ForeignKey(Distribution, null=True, on_delete=models.CASCADE)
-	company = models.ForeignKey(Company, null=True, on_delete=models.CASCADE)
+	branch = models.ForeignKey(Branch, null=True, blank=True, on_delete=models.CASCADE)
+	distribution = models.ForeignKey(Distribution, null=True, blank=True, on_delete=models.CASCADE)
+	company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE)
 	order_number = models.IntegerField()
 	is_urgent = models.BooleanField(default=False)
 	generated_date = models.DateTimeField(

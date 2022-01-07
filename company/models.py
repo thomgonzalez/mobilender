@@ -39,7 +39,7 @@ class Customer(ClassBaseModel):
 		default='01', help_text='Catalogo tipos de cliente.')
 	name = models.CharField(max_length=100, null=True, help_text='Razón social.')
 	rfc = models.CharField(max_length=13, help_text='Registro federal de contribuyentes.')
-	logo = models.ImageField(null=True, help_text='Ruta imagen.')
+	logo = models.ImageField(null=True, blank=True, help_text='Ruta imagen.')
 	address = models.CharField(max_length=300, null=True, help_text='Dirección')
 
 	def __str__(self):
