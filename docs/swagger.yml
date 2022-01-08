@@ -1,0 +1,131 @@
+swagger: "2.0"
+info:
+  title: "API para pedidos de Mobilender."
+  description: "Esta API se encarga de obtener la información de la base de datos y los pedidos de la empresa Mobilender."
+  version: "1.0.0"
+tags:
+- name: "orders"
+  description: "Este endpoint maneja tota la información relacionada con los pedidos de los clientes."
+
+host: localhost
+basePath: /api
+schemes:
+  - http
+  
+paths:
+  /orders:
+    get:
+      tags:
+      - "shop"
+      summary: "Obtiene lista de pedidos urgentes con centros de distribución con cliente PLATINO y que no se han surtido."
+      description: ""
+      operationId: "getListOrder"
+      produces:
+      - "application/json"
+      parameters: 
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/FilterOrder"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Order"
+
+    post:
+      tags:
+      - "shop"
+      summary: "Inserta la información de un nuevo pedido a la base de datos."
+      description: ""
+      operationId: "placeOrder"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateOrder"
+      responses:
+        "200":
+          description: "La informacion del pedido se guardo correctamente."
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "400":
+          description: "Los datos enviados son incorrectos o hay datos obligatorios no enviados."
+        "500":
+          description: "Error interno del servidor"
+
+definitions:
+  FilterOrder:
+    type: "object"
+    properties:
+      is_assortment:
+        type: "boolean"
+        default: 0
+      distribution:
+        type: "string"
+        default: "all"
+      client_type:
+        type: "string"
+        default: "04"
+      is_urgent:
+        type: "boolean"
+        default: 1
+  CreateOrder:
+    type: "object"
+    properties:
+      customer:
+        type: "integer"
+      article:
+        type: "integer"
+      order_number:
+        type: "integer"
+      is_urgent:
+        type: "boolean"
+        default: false
+      amount:
+        type: "integer"
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      order:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          order_number:
+            type: "integer"
+          is_urgent:
+            type: "boolean"
+          amount:
+            type: "integer"
+          distribution:
+            type: "object"
+            properties:
+              id:
+                type: "integer"
+              stock:
+                type: "string"
+      article:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          title:
+            type: "string"
+      assortment_date:
+        type: "string"
+        format: "date-time"
+      
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
