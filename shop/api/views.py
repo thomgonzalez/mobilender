@@ -67,5 +67,5 @@ class OrderViewSet(viewsets.GenericViewSet):
 		serializer = OrderFormSerializer(data=data)
 		serializer.is_valid(raise_exception=True)
 		serializer.save()
-		response = { 'detail': 'Success'}
+		response = { 'detail': 'La infromación del pedido se guardo correctamente'}
 		return Response(response, status=status.HTTP_201_CREATED)
